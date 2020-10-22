@@ -1,0 +1,29 @@
+﻿@using WalletApp.Models
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model List<Transaction>
+@{
+    ViewData["Title"] = localizer["Index"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<table class="table table-borderless">
+    <tr>
+        <th>@localizer["Id"]</th>
+        <th>@localizer["Name"]</th>
+        <th>@localizer["Type"]</th>
+        <th>@localizer["Price"]</th>
+        <th>@localizer["Delete"]</th>
+        <th>@localizer["Update"]</th>
+    </tr>
+    @foreach (var x in Model)
+    { <tr>
+    <td>@x.Id </td>
+    <td>@x.name </td>
+    <td>@x.type</td>
+    <td>@x.price $</td>
+    <td><a href="/Transactions/DetailTransaction/@x.Id" class="btn btn-success">@localizer["Update"]</a></td>
+    <td><a href="/Transactions/DeleteTransaction/@x.Id" class="btn btn-danger">@localizer["Delete"]</a></td>
+</tr>}
+</table>
+<a href="/Transactions/NewTransaction" class="btn btn-primary">@localizer["Add new Transaction"]</a>
